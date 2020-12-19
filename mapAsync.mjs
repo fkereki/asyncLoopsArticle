@@ -1,29 +1,16 @@
-import { logWithTime, getAsyncData } from "./functions.mjs";
+/*
+  PROTOTYPE VERSION
+  Calls go out in parallel
+  Failure is ignored
+*/
 
 Array.prototype.mapAsync = function (fn) {
-  return Promise.all(this.map(fn));
+  return Promise.allSettled(this.map(fn)).then((x) => x.map((y) => y.value));
 };
-
-logWithTime("START -- using .mapAsync(...) method");
-const result1 = await [1, 2, 3].mapAsync(async (i) => {
-  const result = await getAsyncData(`data #${i}`, 1000 * i);
-  logWithTime(result);
-  return result;
-});
-logWithTime(result1);
-logWithTime("END");
 
 /*
     ALTERNATIVE VERSION USING FUNCTIONS
 */
 
-const mapAsync = (arr, fn) => Promise.all(arr.map(fn));
-
-logWithTime("START -- using mapAsync(...) function");
-const result2 = await mapAsync([1, 2, 3], async (i) => {
-  const result = await getAsyncData(`data #${i}`, 1000 * i);
-  logWithTime(result);
-  return result;
-});
-logWithTime(result2);
-logWithTime("END");
+export const mapAsync = (arr, fn) =>
+  Promise.allSettled(arr.map(fn)).then((x) => x.map((y) => y.value));
