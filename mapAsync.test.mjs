@@ -15,12 +15,10 @@ const getMapData = async (v, i, a) => {
 
 logWithTime("START -- using .mapAsync(...) method");
 const result1 = await [1, 2, 3, 5, 8].mapAsync(getMapData);
-logWithTime(result1);
-logWithTime("END");
+logWithTime(`END -- ${result1}`);
 
 console.log();
 
 logWithTime("START -- using mapAsync(...) function");
 const result2 = await mapAsync([1, 2, 3, 5, 8], getMapData);
-logWithTime(result2);
-logWithTime("END");
+logWithTime(`END -- ${result2}`);

@@ -15,12 +15,10 @@ const getFilterData = async (v, i, a) => {
 
 logWithTime("START -- using .filterAsync(...) method");
 const result1 = await [1, 2, 3, 5, 8].filterAsync(getFilterData);
-logWithTime(result1);
-logWithTime("END");
+logWithTime(`END -- [${result1}]`);
 
 console.log();
 
 logWithTime("START -- using filterAsync(...) function");
 const result2 = await filterAsync([1, 2, 3, 5, 8], getFilterData);
-logWithTime(result2);
-logWithTime("END");
+logWithTime(`END --[${result2}]`);
