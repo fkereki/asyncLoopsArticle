@@ -14,4 +14,4 @@ export const getReducedData = (value1, value2, timeToWait, fail = false) =>
     )
   );
 
-export const logWithTime = (value) => console.log(new Date(), value);
+export const logWithTime = (val) => console.log(new Date(), val);

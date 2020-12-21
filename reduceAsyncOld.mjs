@@ -5,8 +5,8 @@ import { forEachAsync } from "./forEachAsync.mjs";
   Calls go out in parallel
   Failure is ignored
 */
-Array.prototype.reduceAsync = function (fn, initValue) {
-  return Promise.resolve(initValue).then((accum) =>
+Array.prototype.reduceAsync = function (fn, init) {
+  return Promise.resolve(init).then((accum) =>
     this.forEachAsync(async (v, i) => {
       accum = await fn(accum, v, i);
     }).then(() => accum)
@@ -17,8 +17,8 @@ Array.prototype.reduceAsync = function (fn, initValue) {
     ALTERNATIVE VERSION USING FUNCTIONS
 */
 
-export const reduceAsync = (arr, fn, initValue) =>
-  Promise.resolve(initValue).then((accum) =>
+export const reduceAsync = (arr, fn, init) =>
+  Promise.resolve(init).then((accum) =>
     forEachAsync(arr, async (v, i) => {
       accum = await fn(accum, v, i);
     }).then(() => accum)

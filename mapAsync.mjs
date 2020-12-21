@@ -5,7 +5,7 @@
 */
 
 Array.prototype.mapAsync = function (fn) {
-  return Promise.allSettled(this.map(fn)).then((x) => x.map((y) => y.value));
+  return Promise.allSettled(this.map(fn)).then((x) => x.map((y) => y.val));
 };
 
 /*
@@ -13,4 +13,4 @@ Array.prototype.mapAsync = function (fn) {
 */
 
 export const mapAsync = (arr, fn) =>
-  Promise.allSettled(arr.map(fn)).then((x) => x.map((y) => y.value));
+  Promise.allSettled(arr.map(fn)).then((x) => x.map((y) => y.val));

@@ -4,20 +4,20 @@
   Failure is ignored
 */
 
-Array.prototype.reduceAsync = function (fn, initValue) {
+Array.prototype.reduceAsync = function (fn, init) {
   return this.reduce(
-    (promise, value, index, array) =>
-      promise.then((acc) => fn(acc, value, index, array)).catch(() => acc),
-    Promise.resolve(initValue)
+    (prom, val, idx, arr) =>
+      prom.then((acc) => fn(acc, val, idx, arr)).catch(() => acc),
+    Promise.resolve(init)
   );
 };
 
 /*
     ALTERNATIVE VERSION USING FUNCTIONS
 */
-export const reduceAsync = (arr, fn, initValue) =>
+export const reduceAsync = (arr, fn, init) =>
   arr.reduce(
-    (promise, value, index, array) =>
-      promise.then((acc) => fn(acc, value, index, array)).catch(() => acc),
-    Promise.resolve(initValue)
+    (prom, val, idx, arr) =>
+      prom.then((acc) => fn(acc, val, idx, arr)).catch(() => acc),
+    Promise.resolve(init)
   );

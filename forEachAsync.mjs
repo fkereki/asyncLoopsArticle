@@ -6,8 +6,7 @@
 
 Array.prototype.forEachAsync = function (fn) {
   return this.reduce(
-    (promise, value, index, array) =>
-      promise.finally(() => fn(value, index, array)),
+    (prom, val, idx, arr) => prom.finally(() => fn(val, idx, arr)),
     Promise.resolve()
   );
 };
@@ -18,7 +17,6 @@ Array.prototype.forEachAsync = function (fn) {
 
 export const forEachAsync = (arr, fn) =>
   arr.reduce(
-    (promise, value, index, array) =>
-      promise.finally(() => fn(value, index, array)),
+    (prom, val, idx, arr) => prom.finally(() => fn(val, idx, arr)),
     Promise.resolve()
   );
