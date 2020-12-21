@@ -2,13 +2,13 @@ import { logWithTime, getAsyncData } from "./functions.mjs";
 import { filterAsync } from "./filterAsync.mjs";
 
 const getFilterData = async (v, i, a) => {
-  console.log("Calling", v, i, a);
+  logWithTime(`Calling - v=${v} i=${i} a=[${a}]`);
   try {
-    const result = await getAsyncData(v % 2 === 1, 1000 * i, i === 1);
-    logWithTime("success " + result);
+    const result = await getAsyncData(v % 2 === 1, 1000 * v, v === 2);
+    logWithTime(`Success - ${result}`);
     return result;
   } catch (e) {
-    logWithTime("failure");
+    logWithTime(`Failure - error`);
     return undefined;
   }
 };

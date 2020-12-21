@@ -2,13 +2,13 @@ import { logWithTime, getAsyncData } from "./functions.mjs";
 import { mapAsync } from "./mapAsync.mjs";
 
 const getMapData = async (v, i, a) => {
-  console.log("Calling", v, i, a);
+  logWithTime(`Calling - v=${v} i=${i} a=[${a}]`);
   try {
-    const result = await getAsyncData(`data #${v}`, 1000 * i, v === 2);
-    logWithTime("success " + result);
+    const result = await getAsyncData(`data #${v}`, 1000 * v, v === 2);
+    logWithTime(`Success - ${result}`);
     return result;
   } catch (e) {
-    logWithTime("failure");
+    logWithTime(`Failure - error`);
     return undefined;
   }
 };

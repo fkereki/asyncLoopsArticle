@@ -6,6 +6,11 @@ export const getAsyncData = (dataToReturn, timeToWait, fail = false) =>
     )
   );
 
+/*
+
+
+
+  */
 export const getReducedData = (value1, value2, timeToWait, fail = false) =>
   new Promise((resolve, reject) =>
     setTimeout(
@@ -14,4 +19,5 @@ export const getReducedData = (value1, value2, timeToWait, fail = false) =>
     )
   );
 
-export const logWithTime = (val) => console.log(new Date(), val);
+export const logWithTime = (val) =>
+  console.log(new Date().toJSON().substr(11, 12), val);

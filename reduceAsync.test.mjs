@@ -2,13 +2,13 @@ import { logWithTime, getReducedData } from "./functions.mjs";
 import { reduceAsync } from "./reduceAsync.mjs";
 
 const reduceData = async (acc, v, i, a) => {
-  console.log("Calling", acc, v, i, a);
+  logWithTime(`Calling - v=${v} i=${i} a=[${a}]`);
   try {
-    const result = await getReducedData(acc, v, 1000 * i, v === 2);
-    logWithTime("success " + result);
+    const result = await getReducedData(acc, v, 1000 * v, v === 2);
+    logWithTime(`Success - ${result}`);
     return result;
   } catch (e) {
-    logWithTime("failure");
+    logWithTime(`Failure - error`);
     return acc;
   }
 };
