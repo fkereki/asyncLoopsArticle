@@ -6,11 +6,6 @@ export const getAsyncData = (dataToReturn, timeToWait, fail = false) =>
     )
   );
 
-/*
-
-
-
-  */
 export const getReducedData = (value1, value2, timeToWait, fail = false) =>
   new Promise((resolve, reject) =>
     setTimeout(
