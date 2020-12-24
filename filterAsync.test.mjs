@@ -4,7 +4,11 @@ import { filterAsync } from "./filterAsync.mjs";
 const getFilterData = async (v, i, a) => {
   logWithTime(`Calling - v=${v} i=${i} a=[${a}]`);
   try {
-    const result = await getAsyncData(v % 2 === 1, 1000 * v, v === 2);
+    const result = await getAsyncData(
+      v % 2 === 1,
+      1000 * v,
+      v === 2 || v === 3
+    );
     logWithTime(`Success - ${result}`);
     return result;
   } catch (e) {

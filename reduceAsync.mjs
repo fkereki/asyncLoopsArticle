@@ -7,7 +7,7 @@
 Array.prototype.reduceAsync = function (fn, init) {
   return this.reduce(
     (prom, val, idx, arr) =>
-      prom.then((acc) => fn(acc, val, idx, arr)).catch(() => acc),
+      prom.then((acc) => fn(acc, val, idx, arr)).catch((acc) => acc),
     Promise.resolve(init)
   );
 };

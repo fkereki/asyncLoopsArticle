@@ -13,8 +13,8 @@ console.log();
 const data = [1, 2, 3, 5, 8];
 
 logWithTime("START #2 -- using a common for(...)");
-for (let i = 0; i < data.length(); i++) {
-  const value = data[i];
+for (let i = 0; i < data.length; i++) {
+  const val = data[i];
   const result = await getAsyncData(`data #${val}`, 1000 * val);
   logWithTime(result);
 }
@@ -28,3 +28,18 @@ data.forEach(async (val) => {
   logWithTime(result);
 });
 logWithTime("END #3");
+
+logWithTime("START -- using map(...)");
+const mapResult = data.map(async (val) => {
+  const result = await getAsyncData(`data #${val}`, 1000 * val, val === 2);
+  logWithTime(result);
+  return result;
+});
+logWithTime("END");
+console.log("Result of map:  ", mapResult);
+
+const awaitedResult = await Promise.allSettled(mapResult);
+console.log("After awaiting: ", awaitedResult);
+
+const finalResult = awaitedResult.map((x) => x.value);
+console.log("Final: ", finalResult);
